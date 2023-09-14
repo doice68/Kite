@@ -1,0 +1,132 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:vm="clr-namespace:Kite.ViewModels"
+			 xmlns:controls="using:Kite.Controls"
+			 x:DataType="vm:MoreMenuViewModel"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Kite.Views.MoreMenuView">
+	<Menu>
+		<Menu.ItemsPanel>
+			<ItemsPanelTemplate>
+				<StackPanel
+					Orientation="Vertical"/>
+			</ItemsPanelTemplate>
+		</Menu.ItemsPanel> 
+		<MenuItem 
+			Height="50"
+			CornerRadius="5"
+			Background="Transparent"
+			Header="{materialIcons:MaterialIconExt Kind=MoreHoriz, Size=25}">
+			<!--next-->
+			<MenuItem 
+				IsEnabled="{Binding !IsLast}"
+				Command="{Binding Next}">
+				<MenuItem.Header>
+					<StackPanel
+						Orientation="Horizontal"
+						Spacing="8">
+						<materialIcons:MaterialIcon
+								Width="25"
+								Height="25"
+								Kind="NextTitle"/>
+						<Label
+							VerticalAlignment="Center"
+							Content="Next"/>
+					</StackPanel>
+				</MenuItem.Header>
+			</MenuItem>
+			<!--previous-->
+			<MenuItem 
+				IsEnabled="{Binding !IsFirst}"
+				Command="{Binding Previous}">
+				<MenuItem.Header>
+					<StackPanel
+						Orientation="Horizontal"
+						Spacing="8">
+						<materialIcons:MaterialIcon
+								Width="25"
+								Height="25"
+								Kind="PreviousTitle"/>
+						<Label
+							VerticalAlignment="Center"
+							Content="Previous"/>
+					</StackPanel>
+				</MenuItem.Header>
+			</MenuItem>
+			<!--Reset-->
+			<MenuItem Command="{Binding Reset}">
+				<MenuItem.Header>
+					<StackPanel
+						Orientation="Horizontal"
+						Spacing="8">
+						<materialIcons:MaterialIcon
+								Width="22"
+								Height="22"
+								Kind="Square"/>
+						<Label
+							VerticalAlignment="Center"
+							Content="Reset"/>
+					</StackPanel>
+				</MenuItem.Header>
+			</MenuItem>
+			<Separator Margin="0, 10"/>
+			<!--exta 10-->
+			<MenuItem 
+				Command="{Binding ExtraTime}"
+				CommandParameter="10">
+				<MenuItem.Header>
+					<StackPanel
+						Orientation="Horizontal"
+						Spacing="8">
+						<materialIcons:MaterialIcon
+								Width="22"
+								Height="22"
+								Kind="Timer"/>
+						<Label
+							VerticalAlignment="Center"
+							Content="Extra 10 seconds"/>
+					</StackPanel>
+				</MenuItem.Header>
+			</MenuItem>
+			<!--extra 30-->
+			<MenuItem
+				Command="{Binding ExtraTime}"
+				CommandParameter="30">
+				<MenuItem.Header>
+					<StackPanel
+						Orientation="Horizontal"
+						Spacing="8">
+						<materialIcons:MaterialIcon
+								Width="22"
+								Height="22"
+								Kind="Timer"/>
+						<Label
+							VerticalAlignment="Center"
+							Content="Extra 30 seconds"/>
+					</StackPanel>
+				</MenuItem.Header>
+			</MenuItem>
+			<!--extra 60-->
+			<MenuItem
+				Command="{Binding ExtraTime}"
+				CommandParameter="60">
+				<MenuItem.Header>
+					<StackPanel
+						Orientation="Horizontal"
+						Spacing="8">
+						<materialIcons:MaterialIcon
+								Width="22"
+								Height="22"
+								Kind="Timer"/>
+						<Label
+							VerticalAlignment="Center"
+							Content="Extra 60 seconds"/>
+					</StackPanel>
+				</MenuItem.Header>
+			</MenuItem>
+		</MenuItem>
+	</Menu>
+</UserControl>

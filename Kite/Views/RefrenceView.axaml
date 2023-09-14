@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Kite.ViewModels"
+			 xmlns:views="using:Kite.Views"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:RefrenceViewModel"
+			 x:Class="Kite.Views.RefrenceView">
+	<Panel
+		Background="Transparent"
+		Classes="hoverRoot">
+		<Grid
+			RowDefinitions="Auto, *, Auto">
+			<!--top section-->
+			<Panel
+				Margin="8"
+				VerticalAlignment="Top"
+				Classes="hoverPanel">
+				<!--home button-->
+				<Button
+					Height="50"
+					Classes="Invisible"
+					HorizontalAlignment="Left"
+					Foreground="White"
+					Command="{Binding GoToHome}"
+					Content="{materialIcons:MaterialIconExt Kind=Home, Size=25}"/>
+				<!--more button-->
+				<views:MoreMenuView
+					DataContext="{Binding MoreMenuViewModel}"
+					Classes="Invisible"
+					HorizontalAlignment="Right">
+				</views:MoreMenuView>
+			</Panel>
+			<!--middle section-->
+			<Border
+				ZIndex="-1"
+				Margin="0, 0, 0, 16"
+				Grid.RowSpan="2"
+				ClipToBounds="True"
+				CornerRadius="10"
+				Background="Black">
+				<Panel>
+					<!--refrence image-->
+					<Image
+						Source="{Binding ImageSource}">
+						<Image.Effect>
+							<BlurEffect Radius="{Binding BlurAmount}"/>
+						</Image.Effect>
+					</Image>
+					<!--pause button-->
+					<Panel
+						Classes="hoverPanel"
+						Classes.On="{Binding Paused}"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch">
+						<Rectangle
+							Opacity="0.6"
+							Fill="Black"/>
+						<Button
+							Background="Transparent"
+							Command="{Binding TogglePause}">
+							<Grid RowDefinitions="*, Auto">
+								<materialIcons:MaterialIcon
+									Width="60"
+									Height="60"
+									Foreground="White"
+									Kind="{Binding State}"/>
+								<Label
+									Grid.Row="1"
+									HorizontalAlignment="Center"
+									FontSize="20"
+									Content="{Binding Text}"/>
+							</Grid>
+						</Button>
+					</Panel>
+				</Panel>
+			</Border>
+			<!--bottom section-->
+			<Panel
+				Grid.Row="2">
+				<Grid ColumnDefinitions="Auto, *, Auto">
+					<Label
+						VerticalAlignment="Center"
+						Margin="8, 0"
+						Content="{Binding TimeLeftText}"/>
+					<ProgressBar
+						Grid.Column="1"
+						MinWidth="0"
+						IsEnabled="{Binding !Paused}"
+						Maximum="{Binding MaxTime}"
+						Value="{Binding TimeLeft}"/>
+					<!--turn-->
+					<Label
+						VerticalAlignment="Center"
+						Theme="{StaticResource TagLabel}"
+						Grid.Column="2"
+						Margin="8,0"
+						FontSize="13"
+						Content="{Binding TurnText}"/>
+				</Grid>
+			</Panel>
+		</Grid>
+	</Panel>
+</UserControl>

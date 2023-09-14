@@ -1,0 +1,31 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+	<Style Selector=":is(Control).hoverRoot:not(:pointerover) :is(Control).hoverPanel">
+		<Setter
+			Property="Opacity"
+			Value="0"/>
+	</Style>
+
+	<Style Selector=":is(Control).hoverPanel">
+		<Setter Property="Transitions">
+			<Transitions>
+				<DoubleTransition
+					Easing="CircularEaseInOut"
+					Property="Opacity"
+					Duration="0:0:0.1"/>
+			</Transitions>
+		</Setter>
+	</Style>
+
+	<Style Selector=":is(Control).On">
+		<Setter
+			Property="Opacity"
+			Value="1"/>
+	</Style>
+</Styles>

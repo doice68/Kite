@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Kite.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Kite.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+		x:Class="Kite.Views.MainWindow"
+		Icon="/Assets/icon.ico"
+        Topmost="{Binding StayOnTop}"
+		ExtendClientAreaToDecorationsHint="True"
+		MinWidth="300" MinHeight="300"
+		Title="Kite">
+	
+	<dialogHost:DialogHost
+		Identifier="main"
+		DialogMargin="0"
+		Margin="0"
+		BorderThickness="0"
+		Padding="0"
+		BorderBrush="Transparent"
+		Background="Transparent"
+		CloseOnClickAway="{Binding DialogHostCloseOnClick}">
+		<Grid
+			Margin="16"
+			RowDefinitions="Auto, 8, *">
+			<DockPanel>
+				<Label
+					Margin="0, 0, 8, 0"
+					VerticalAlignment="Center"
+					IsHitTestVisible="False"
+					FontWeight="SemiBold"
+					Foreground="{StaticResource SemiBlue5}"
+					Content="Kite"/>
+				<CheckBox
+					IsChecked="{Binding StayOnTop}"
+					VerticalAlignment="Center"
+					Content="On top"/>
+			</DockPanel>
+			<views:MainView
+				Grid.Row="3"/>
+		</Grid>
+	</dialogHost:DialogHost>
+	
+</Window>

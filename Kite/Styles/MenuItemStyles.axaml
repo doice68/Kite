@@ -1,0 +1,59 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+			<MenuItem 
+				Classes="Moveble"
+				Header="yert">
+				<MenuItem
+					Header="sdsad"/>
+				<MenuItem
+					Header="sd"/>
+				<MenuItem
+					Header="sd"/>
+				<MenuItem
+					Header="sd"/>
+			</MenuItem>
+			
+        </Border>
+    </Design.PreviewWith>
+	<Style Selector="MenuItem">
+		<Setter
+			Property="CornerRadius"
+			Value="6"/>
+	</Style>
+	<Style Selector="MenuItem MenuItem /template/ ContentPresenter#PART_HeaderPresenter">
+		<Setter
+			Property="Transitions">
+			<Transitions>
+				<TransformOperationsTransition
+					Duration="0:0:0.1"
+					Easing="CircularEaseOut"
+					Property="RenderTransform"/>
+			</Transitions>
+		</Setter>
+	</Style>
+	<Style Selector="MenuItem MenuItem:pointerover /template/ ContentPresenter#PART_HeaderPresenter">
+		<!--<Setter
+			Property="Margin"
+			Value="14,0"/>-->
+		<Setter
+			Property="RenderTransform"
+			Value="translateX(7px)"/>
+	</Style>
+	<Style Selector="MenuItem.Danger">
+		<Setter
+			Property="Background"
+			Value="{StaticResource SemiRed4}"/>
+	</Style>
+	<Style Selector="MenuItem.Danger:pointerover /template/ Border#PART_LayoutRoot">
+		<Setter
+			Property="Background"
+			Value="{StaticResource SemiRed5}"/>
+	</Style>
+	<Style Selector="MenuItem.Danger:pressed">
+		<Setter
+			Property="Background"
+			Value="{StaticResource SemiRed6}"/>
+	</Style>
+</Styles>

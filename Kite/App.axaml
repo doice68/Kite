@@ -1,0 +1,20 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+			 x:Class="Kite.App"
+             xmlns:local="using:Kite"
+			 RequestedThemeVariant="Light">
+    
+	<Application.Styles>
+        <FluentTheme />
+		<dialogHostAvalonia:DialogHostStyles />
+		<materialIcons:MaterialIconStyles />
+		<StyleInclude Source="avares://Semi.Avalonia/Themes/Index.axaml"/>
+		<StyleInclude Source="avares://Semi.Avalonia/Themes/DarkTheme.axaml"/>
+        <StyleInclude Source="/Styles/Common.axaml"/>
+		<StyleInclude Source="/Styles/ListBoxStyles.axaml"/>
+		<StyleInclude Source="/Styles/HoverFadeStyles.axaml"/>
+		<StyleInclude Source="/Styles/MenuItemStyles.axaml"/>
+	</Application.Styles>
+</Application>

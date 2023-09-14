@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:vm="clr-namespace:Kite.ViewModels"
+             Background="Transparent"
+			 Width="300" 
+			 x:Class="Kite.Views.Popups.SeasionConfigView">
+	<Grid RowDefinitions="Auto, Auto, Auto, Auto">
+		<Border
+			Grid.RowSpan="4"
+			Theme="{StaticResource CardBorder}"/>
+		<!--title-->
+		<Label
+			Margin="14"
+			FontSize="20"
+			Content="Start new seasion"/>
+		<Button
+			Classes="Tertiary"
+			Opacity="0.8"
+			Margin="10"
+			Width="30"
+			Height="30"
+			Foreground="White"
+			HorizontalAlignment="Right"
+			Command="{Binding Close}"
+			Content="{materialIcons:MaterialIconExt Close, Size=20}}"/>
+		<Separator
+			Grid.Row="1"/>
+		<StackPanel
+			Grid.Row="2"
+			Margin="16"
+			Spacing="8">
+			<!--time-->
+			<Label
+				Content="Time in seconds:"/>
+			<NumericUpDown
+				Value="{Binding Time}"/>
+			<!--randomise-->
+			<Label
+				Margin="0, 8, 0, 0"
+				Content="Random order:"/>
+			<ToggleSwitch
+				Classes="Blue"
+				IsChecked="{Binding Shuffle}"/>
+		</StackPanel>
+		<!--start-->
+		<Button
+			Classes="Dark"
+			Grid.Row="3"
+			Margin="8"
+			Theme="{StaticResource SolidButton}"
+			Content="Start"
+			Command="{Binding Start}"/>
+	</Grid>
+</UserControl>

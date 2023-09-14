@@ -1,0 +1,112 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Kite.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+			 x:DataType="vm:HomeViewModel"
+			 x:Class="Kite.Views.HomeView">
+	<Grid RowDefinitions="Auto, 8, *">
+		<!--top section-->
+		<Label
+			FontSize="20"
+			FontWeight="Bold"
+			Content="Folders:"/>
+		<Button
+			Classes="Invisible"
+			HorizontalAlignment="Right"
+			Content="Add folder"
+			Command="{Binding AddFolder}"/>
+		<Border
+			Grid.Row="2"
+			Theme="{StaticResource CardBorder}"/>
+		<!--folders list-->
+		<ItemsControl
+			Grid.Row="2"
+			ItemsSource="{Binding Folders}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Button
+						Padding="4"
+						Classes="ListItem"
+						Height="60"
+						HorizontalContentAlignment="Stretch"
+						Command="{Binding $parent[UserControl].DataContext.SelectFolder}"
+						CommandParameter="{Binding .}">
+						<Button.ContextMenu>
+							<ContextMenu>
+								<MenuItem
+									Header="Open in Explorer"
+									Command="{Binding $parent[UserControl].DataContext.OpenInExplorer}"
+									CommandParameter="{Binding .}"/>
+								<Separator 
+									Background="Transparent"
+									Height="4"/>
+								<MenuItem
+									Header="Delete"
+									Classes="Danger"
+									Command="{Binding $parent[UserControl].DataContext.Delete}"
+									CommandParameter="{Binding .}"/>
+							</ContextMenu>
+						</Button.ContextMenu>
+						<DockPanel
+							Margin="8"
+							Classes="hoverRoot"
+							Background="Transparent">
+							<!--folder icon-->
+							<Label
+								IsEnabled="{Binding Empty}"
+								Margin="8, 0"
+								DockPanel.Dock="Left"
+								Content="{materialIcons:MaterialIconExt Folder, Size=20}"/>
+							<!--folder name-->
+							<Label
+								IsEnabled="{Binding Empty}"
+								Margin="4, 0"
+								VerticalAlignment="Center"
+								Content="{Binding Name}"/>
+							<!--item count-->
+							<Label
+								DockPanel.Dock="Left"
+								Margin="8, 0"
+								Height="25"
+								VerticalAlignment="Center"
+								VerticalContentAlignment="Center"
+								CornerRadius="7"
+								Theme="{StaticResource TagLabel}"
+								Content="{Binding Length}"/>
+							<!--delete button-->
+							<!--<Button
+								DockPanel.Dock="Right"
+								Classes="Invisible hoverPanel"
+								Width="40" Height="40"
+								HorizontalAlignment="Right"
+								Foreground="{StaticResource SemiRed4}"
+								Command="{Binding $parent[UserControl].DataContext.Delete}"
+								CommandParameter="{Binding .}"
+								Content="{materialIcons:MaterialIconExt TrashCan, Size=24}"/>-->
+							<!--<Button
+								DockPanel.Dock="Right"
+								Classes="Invisible hoverPanel"
+								HorizontalAlignment="Right"
+								Content="{materialIcons:MaterialIconExt InfoOutline, Size=24}"/>-->
+
+							<!--<Button
+							DockPanel.Dock="Right"
+							Classes="Invisible hoverPanel"
+							HorizontalAlignment="Right"
+							Content="{materialIcons:MaterialIconExt Play, Size=24}"/>-->
+						</DockPanel>
+					</Button>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+		<Label
+			Grid.Row="2"
+			IsVisible="{Binding !Folders.Count}"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Content="Empty"/>
+	</Grid>
+</UserControl>
