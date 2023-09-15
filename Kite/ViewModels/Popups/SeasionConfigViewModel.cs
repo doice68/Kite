@@ -16,10 +16,10 @@ namespace Kite.ViewModels.Popups
     public partial class SeasionConfigViewModel : ViewModelBase
     {
         [ObservableProperty]
-        bool shuffle;
+        bool shuffle = true;
 
         [ObservableProperty]
-        int time = 10;
+        int time = 60;
 
         public string path;
 

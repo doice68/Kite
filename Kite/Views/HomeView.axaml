@@ -9,15 +9,26 @@
 			 x:Class="Kite.Views.HomeView">
 	<Grid RowDefinitions="Auto, 8, *">
 		<!--top section-->
-		<Label
-			FontSize="20"
-			FontWeight="Bold"
-			Content="Folders:"/>
-		<Button
-			Classes="Invisible"
-			HorizontalAlignment="Right"
-			Content="Add folder"
-			Command="{Binding AddFolder}"/>
+		<DockPanel>
+			<Label
+				DockPanel.Dock="Left"
+				VerticalAlignment="Center"
+				FontSize="20"
+				FontWeight="Bold"
+				Content="Folders:"/>
+			<Button
+				Margin="4, 0"
+				DockPanel.Dock="Left"
+				Background="Transparent"
+				Command="{Binding Refresh}"
+				Content="{materialIcons:MaterialIconExt Refresh, Size=22}"/>
+			<Button
+				DockPanel.Dock="Right"
+				HorizontalAlignment="Right"
+				Classes="Invisible"
+				Content="Add folder"
+				Command="{Binding AddFolder}"/>
+		</DockPanel>
 		<Border
 			Grid.Row="2"
 			Theme="{StaticResource CardBorder}"/>

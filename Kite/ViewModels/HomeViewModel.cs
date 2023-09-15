@@ -52,12 +52,7 @@ namespace Kite.ViewModels
                 var jsonText = File.ReadAllText(savePath);
                 Folders = JsonSerializer.Deserialize<ObservableCollection<RefrenceFolder>>(jsonText);
 
-                foreach (var folder in Folders)
-                {
-                    folder.Init();
-                }
-
-                Folders = new(Folders.Distinct());
+                Refresh();
             }
         }
 
@@ -74,6 +69,15 @@ namespace Kite.ViewModels
             var sv = Ioc.Default.GetRequiredService<SeasionConfigView>();
             sv.ViewModel.path = refrenceFolder.Path;
             DialogHost.Show(sv);
+        }
+
+        public void Refresh() 
+        {
+            foreach (var folder in Folders)
+            {
+                folder.Init();
+            }
+            Folders = new(Folders.Distinct());
         }
 
         public void Delete(object folder) 
